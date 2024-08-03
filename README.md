@@ -121,13 +121,15 @@ Dans les deux dockers, installez netcat :
 `apt update -y && apt install netcat -y`
 
 Avec docker ps, noter les ID des dockers. (Ici, nous utiliserons les IDs des dockers à la place des adresses IP. Cependant, vous pouvez installer les utilitaires nécessaire pour utiliser `ip address` et utiliser les adresses privées à la place.)
+
+
 Dans un des docker : 
 `nc -l 3333` 
 
 Dans l'autre : 
 `echo message | nc ID_PREMIER_DOCKER 3333` 
 
-Dans cette simulation, nous remplaçons l'adresse ip avec l'ID du docker.
+
 
 Pour ping : 
 
