@@ -25,7 +25,6 @@
        valid_lft 171785sec preferred_lft 171785sec
     inet6 ffff::ffff:ffff:ffff:ffff/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
-
 ```
 
 Pour moi, j'ai à la fois du wifi ET un réseau cablé... Mon réseau cablé est enp5s0 avec comme adresse privée: 
@@ -90,7 +89,7 @@ _gateway                 ether   ff:ff:ff:ff:ff:ff   C                     wlp4s
 
 Après `ping 172.18.0.3` : 
 
-```
+```sh 
 Address                  HWtype  HWaddress           Flags Mask            Iface
 10.0.0.10                        (incomplete)                              enp5s0
 172.18.0.3               ether   02:42:ac:12:00:03   C                     br-b667e9c77ab1
@@ -99,35 +98,37 @@ _gateway                 ether   ff:ff:ff:ff:ff:ff   C                     wlp4s
 172.18.0.2               ether   02:42:ac:12:00:02   C                     br-b667e9c77ab1
 _gateway                 ether   ff:ff:ff:ff:ff:ff   C                     wlp4s0
 ```
-
-
-# 5.Telechargements 
+ 
+# 5. Téléchargements 
 
 ## 5.1 
-    suivre le labo 
+
+suivre le labo 
 
 ## 5.2 
-    voir le script cours 
 
-# Annexe :  
-    Si comme moi vous n'avez pas d'amis utilisons docker pour tester les communications 
+voir le script `cours`. 
 
-    `sudo docker network create network` pour creer un network.
-    `docker run -it --net network  ubuntu /bin/bash` pour lancer les deux docker (lancer la commande dans 2
-    terminaux differents)
+# Annexe 
 
-    Dans les deux dockers, installez netcat : 
-    `apt update -y && apt install netcat -y`
+Si comme moi vous n'avez pas d'amis utilisons docker pour tester les communications !
 
-    Avec docker ps, noter les ID. 
-    Dans un des docker : 
-    `nc -l 3333` 
+`sudo docker network create nom_du_network` pour creer un network.
+`docker run -it --net nom_du_network ubuntu /bin/bash` pour lancer les deux docker (lancer la commande dans 2
+terminaux differents)
 
-    Dans l'autre : 
-    `echo message | nc ID_PREMIER_DOCKER 3333` 
+Dans les deux dockers, installez netcat : 
+`apt update -y && apt install netcat -y`
 
-    Dans cette simulation, nous remplaçons l'adresse ip avec l'ID du docker.
+Avec docker ps, noter les ID des dockers. (Ici, nous utiliserons les IDs des dockers à la place des adresses IP. Cependant, vous pouvez installer les utilitaires nécessaire pour utiliser `ip address` et utiliser les adresses privées à la place.)
+Dans un des docker : 
+`nc -l 3333` 
 
-    Pour ping : 
+Dans l'autre : 
+`echo message | nc ID_PREMIER_DOCKER 3333` 
 
-    `apt install -y iputils-ping` et `ping ID_PREMIER_DOCKER`.
+Dans cette simulation, nous remplaçons l'adresse ip avec l'ID du docker.
+
+Pour ping : 
+
+`apt install -y iputils-ping` et `ping ID_PREMIER_DOCKER`.
